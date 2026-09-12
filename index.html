@@ -44,13 +44,12 @@
 </head>
 <body>
 
-  <button id="start-button" style="display:none">タップしてARを開始</button>
+  <button id="start-button">タップして名刺をかざしてください</button>
   <div id="link-buttons">
-  <img src="assets/images/icon_hp.png" onclick="window.open('https://d-dizain.com/digital-shop/ar-card/', '_blank')">
-  <img src="assets/images/icon_fb.png" onclick="window.open('https://www.facebook.com/kiyomi.dake', '_blank')">
-  <img src="assets/images/icon_line.png" onclick="window.open('https://lin.ee/9J4t8yS', '_blank')">
-</div>
-
+    <img src="assets/images/icon_hp.png" onclick="window.open('https://d-dizain.com/digital-shop/ar-card/', '_blank')">
+    <img src="assets/images/icon_fb.png" onclick="window.open('https://www.facebook.com/kiyomi.dake', '_blank')">
+    <img src="assets/images/icon_line.png" onclick="window.open('https://lin.ee/9J4t8yS', '_blank')">
+  </div>
 
   <a-scene mindar-image="imageTargetSrc: assets/targets.mind;"
            color-space="sRGB"
@@ -58,15 +57,13 @@
            vr-mode-ui="enabled:false"
            device-orientation-permission-ui="enabled:false">
 
-<a-assets>
-  <video id="video"
-         src="assets/videos/dake.mp4"
-         preload="auto"
-         playsinline
-         webkit-playsinline
-         muted></video>
-</a-assets>
-
+    <a-assets>
+      <video id="video"
+             src="assets/videos/dake.mp4"
+             preload="auto"
+             playsinline
+             webkit-playsinline></video>
+    </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
@@ -87,6 +84,10 @@
     const video = document.querySelector('#video');
     const btn = document.querySelector('#start-button');
     const linkButtons = document.querySelector('#link-buttons');
+
+    btn.addEventListener('click', () => {
+      btn.style.display = 'none';
+    });
 
     target.addEventListener('targetFound', () => {
       video.play();
