@@ -110,11 +110,8 @@
       loading.style.display = 'block';
     });
 
-    document.querySelector('a-scene').addEventListener('arReady', () => {
-      loading.style.display = 'none';
-    });
-
     target.addEventListener('targetFound', () => {
+      loading.style.display = 'none';
       video.play();
       linkButtons.style.display = 'flex';
     });
