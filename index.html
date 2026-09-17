@@ -76,6 +76,9 @@
                width="1"
                height="1.8"
                position="0 0 0.001"></a-video>
+      <a-text id="intro-line1" value="ダケキヨミです！" position="0 0.4 0.002" align="center" color="#FFFFFF" width="1.8"></a-text>
+      <a-text id="intro-line2" value="WEBとAIで日々の作業を" position="0 0 0.002" align="center" color="#FFFFFF" width="1.8"></a-text>
+      <a-text id="intro-line3" value="ラクにするお手伝いをします" position="0 -0.3 0.002" align="center" color="#FFFFFF" width="1.8"></a-text>
     </a-entity>
 
   </a-scene>
@@ -85,6 +88,9 @@
     const video = document.querySelector('#video');
     const btn = document.querySelector('#start-button');
     const linkButtons = document.querySelector('#link-buttons');
+    const introLine1 = document.querySelector('#intro-line1');
+    const introLine2 = document.querySelector('#intro-line2');
+    const introLine3 = document.querySelector('#intro-line3');
 
     btn.addEventListener('click', () => {
       btn.style.display = 'none';
@@ -95,10 +101,19 @@
       linkButtons.style.display = 'flex';
     });
 
+    video.addEventListener('playing', () => {
+      introLine1.setAttribute('visible', false);
+      introLine2.setAttribute('visible', false);
+      introLine3.setAttribute('visible', false);
+    });
+
     target.addEventListener('targetLost', () => {
       video.pause();
       video.currentTime = 0;
       linkButtons.style.display = 'none';
+      introLine1.setAttribute('visible', true);
+      introLine2.setAttribute('visible', true);
+      introLine3.setAttribute('visible', true);
     });
   </script>
 
