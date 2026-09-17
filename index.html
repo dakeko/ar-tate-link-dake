@@ -22,8 +22,26 @@
       border: 2px solid #ffffff;
       border-radius: 16px;
       cursor: pointer;
-      white-space: nowrap;
       letter-spacing: 0.05em;
+      text-align: center;
+      line-height: 1.6;
+    }
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      padding: 14px 24px;
+      font-size: 20px;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      border-radius: 16px;
+      text-align: center;
+      line-height: 1.6;
+      display: none;
     }
     #link-buttons {
       position: fixed;
@@ -44,7 +62,8 @@
 </head>
 <body>
 
-  <button id="start-button">タップして名刺をかざす</button>
+  <button id="start-button">タップして<br>名刺をかざす</button>
+  <div id="loading">読み込み中...<br>少々お待ちください🙏</div>
   <div id="link-buttons">
     <img src="assets/images/icon_hp.png" onclick="window.open('https://d-dizain.com/digital-shop/ar-card/', '_blank')">
     <img src="assets/images/icon_fb.png" onclick="window.open('https://www.facebook.com/kiyomi.dake', '_blank')">
@@ -83,10 +102,16 @@
     const target = document.querySelector('#card-target');
     const video = document.querySelector('#video');
     const btn = document.querySelector('#start-button');
+    const loading = document.querySelector('#loading');
     const linkButtons = document.querySelector('#link-buttons');
 
     btn.addEventListener('click', () => {
       btn.style.display = 'none';
+      loading.style.display = 'block';
+    });
+
+    document.querySelector('a-scene').addEventListener('arReady', () => {
+      loading.style.display = 'none';
     });
 
     target.addEventListener('targetFound', () => {
